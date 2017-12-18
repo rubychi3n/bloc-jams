@@ -30,21 +30,6 @@ var albumMarconi = {
     ]
 };
 
-// Assignment - Third Album
-var albumStrangerThings = {
-    title: 'Stranger Things',
-    artist: 'Barb',
-    label: 'ST',
-    year: '2017',
-    albumArtUrl: 'assets/images/album_covers/22.png',
-    songs: [
-        { title: 'Stranger Things', duration: '1:01' },
-        { title: 'Nancy and Barb', duration: '5:01' },
-        { title: 'Eleven', duration: '3:21'},
-        { title: 'Castle Byers', duration: '3:14' },
-        { title: 'The Upside Down', duration: '2:15'}
-    ]
-};
 
 //function takes songNumber, songName, songLength as arguments and populates
 //the song row template accordingly 
@@ -97,9 +82,3 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 };
-
-function clickThrough(){
-    for (var i = 0; i)
-}
-
-document.getElementsByTagName('img')[1].addEventListener('click', clickThrough);
