@@ -73,7 +73,7 @@
          '  <td class="song-item-duration">' + songLength + '</td>' +
          '</tr>';
 
-     return template;
+     return $(template);
  };
 
  // setCurrentAlbum function will be called when window loads 
@@ -84,28 +84,37 @@
      // #1
      // select all of the HTML elements required to display on the album page: 
      // title, artist, release info, image, and song list.
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+     // replace with jQuery-related variable and jQuery selector to use CSS-style syntax
+     var $albumTitle = $('.album-view-title');
+     var $albumArtist = $('.album-view-artist');
+     var $albumReleaseInfo = $('.album-view-release-info');
+     var $albumImage = $('.album-cover-art');
+     var $albumSongList = $('.album-view-song-list');
 
      // #2 
      // the firstChild property identifies the first child node of an element, 
      // and nodeValue returns or sets the value of a node. 
-     albumTitle.firstChild.nodeValue = album.title;
-     albumArtist.firstChild.nodeValue = album.artist;
-     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
-     albumImage.setAttribute('src', album.albumArtUrl);
+    //  albumTitle.firstChild.nodeValue = album.title;
+    //  albumArtist.firstChild.nodeValue = album.artist;
+    //  albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
+    //  albumImage.setAttribute('src', album.albumArtUrl);
+
+    //  text() method to replace the content of the text nodes instead of firstChild.nodeValue
+    //  att() method to change the element attribute using the same arguments 
+    $albumTitle.text(album.title);
+    $albumArtist.text(album.artist);
+    $albumReleaseInfo.text(album.year + ' ' + album.label);
+    $albumImage.attr('src', album.albumArtUrl);
 
      // #3 
      // setting parent container to an empty string 
-     albumSongList.innerHTML = '';
+     $albumSongList.empty();
 
      // #4 
      // loop through all the songs from thr specified album object
      for (var i = 0; i < album.songs.length; i++) {
-         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+        var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+        $albumSongList.append($newRow);
      }
  };
 
