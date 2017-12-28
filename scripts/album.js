@@ -244,10 +244,25 @@ var nextSong = function() {
 //      }
 //  };
 
- // Creating a parent container that allows us to listen for an event on a parent element
- // but target the behavior of one of its children 
+// Creating a parent container that allows us to listen for an event on a parent element
+// but target the behavior of one of its children 
 //  var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 //  var songRows = document.getElementsByClassName('album-view-song-item');
+
+
+var togglePlayFromPlayerBar = function (){
+    var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+
+    if (currentSoundFile.isPaused()){
+        $(currentlyPlayingCell).html(pauseButtonTemplate);
+        $('.main-controls .play-pause').html(playerBarPauseButton);
+        currentSoundFile.play();
+    } else {
+        $(currentlyPlayingCell).html(playButtonTemplate);
+        $('.main-controls .play-pause').html(playerBarPlayButton);
+        currentSoundFile.pause();
+    }
+};  
 
  // Album button templates
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
@@ -272,19 +287,6 @@ var nextSong = function() {
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
  };
-
- 
-var togglePlayFromPlayerBar = function (){
-    if (currentSoundFile.isPaused()){
-        $().html(pauseButtonTemplate);
-        $('.main-controls .play-pause').html(playerBarPauseButton);
-        currentSoundFile.play();
-    } else {
-        $().html(playButtonTemplate);
-        $('.main-controls .play-pause').html(playerBarPlayButton);
-        currentSoundFile.pause();
-    }
-};
 
 
 //  window.onload = function () {
