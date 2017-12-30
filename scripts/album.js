@@ -1,7 +1,3 @@
- //function takes songNumber, songName, songLength as arguments and populates
- //the song row template accordingly 
-
-
  var setSong = function (songNumber){
      // prevent concurrent play back 
      // stop current song before we set a new one
@@ -42,6 +38,8 @@ var getSongNumberCell = function (number){
     return $('.song-item-number[data-song-number="' + number + '"]');
 };
 
+ // function takes songNumber, songName, songLength as arguments and populates
+ // the song row template accordingly 
  var createSongRow = function (songNumber, songName, songLength) {
      var template =
          '<tr class="album-view-song-item">'
@@ -163,6 +161,30 @@ var getSongNumberCell = function (number){
          $albumSongList.append($newRow);
      }
  };
+
+
+// sets the text to current time in the song 
+ var setCurrentTimeInPlayerBar = function (currentTime){
+    var currentTime = currentSoundFile.getTime();
+    $('.current-time').text(currentTime);
+ };
+
+// sets the text to total time in the song
+ var setTotalTimeInPlayerBar = function (totalTime){
+    var totalTime = currentSoundFile.getDuration();
+    $('.total-time').text(totalTime);
+ };
+
+ var filterTimeCode = function (timeInSeconds){
+     var numberForm = parseFloat(album.songs.duration);
+     var wholeMin = Math.floor(numberForm / 60);
+     var wholeSec = Math.floor(numberForm % 60);
+     return wholeMin + ":" + wholeSec; 
+    // Use the parseFloat() method to get the seconds in number form.
+    // Store variables for whole seconds and whole minutes (hint: use Math.floor() to round numbers down).
+    // Return the time in the format X:XX
+ };
+
 
  // allows song position & volume to sychronize with seek bars 
  // need to trigger this method whenever a song plays 
@@ -421,7 +443,8 @@ $(document).ready(function () {
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
      $playPauseButton.click(togglePlayFromPlayerBar);
-     
+    });
+
 
     //  songListContainer.addEventListener('mouseover', function (event) {
          // event target property stores the DOM element where the event occured 
@@ -472,10 +495,7 @@ $(document).ready(function () {
 //              clickHandler(event.target);
 //          });
 //      }
- });
-
-
- // function that keeps traversing the DOM upward until a parent with a specified class name is found
+// function that keeps traversing the DOM upward until a parent with a specified class name is found
 //  var findParentByClassName = function (element, targetClass) {
 //      if (element) {
 //          var currentParent = element.parentElement;
