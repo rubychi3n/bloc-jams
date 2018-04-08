@@ -103,10 +103,14 @@
 
     .seek-bar .fill {
         background-color: white;
-        width: 36%;
+        width: 0%;
         height: 0.25rem;
         border-radius: 2px;
     }
+
+    .volume .seek-bar .fill {
+        width: 36%;
+     }
     /* the round control */
 
     .seek-bar .thumb {
@@ -128,6 +132,10 @@
         -moz-transition: all 100ms ease-in-out;
         transition: width 100ms ease-in-out, height 100ms ease-in-out, margin-top 100ms ease-in-out, margin-left 100ms ease-in-out;
         /* thie removes the transition on the "left" property that caused the unwanted delayed animation*/
+    }
+    
+    .currently-playing .seek-bar .thumb {
+        left: 0%;
     }
 
     .seek-bar:hover .thumb {
